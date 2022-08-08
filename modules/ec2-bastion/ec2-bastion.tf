@@ -1,6 +1,9 @@
+
+# EC2 instance
+
 resource "aws_instance" "bastion" {
   ami                       = local.ami
-  availability_zone         = var.availability_zone
+  availability_zone         = local.az[0]
   subnet_id                 = var.subnets[0].id
   instance_type             = var.instance-type
   vpc_security_group_ids    = [ var.security-group.id ]

@@ -1,7 +1,7 @@
-# output "vpc-name" {
-#   value = module.vpc
+# output "vpc-id" {
+#   value = module.vpc.id
 # }
 
-output "bastion-instance" {
-  value = module.bastion.bastion.public_ip
-}
+# output "bastion-instance" {
+#   value = module.bastion.bastion.public_ip
+# }
