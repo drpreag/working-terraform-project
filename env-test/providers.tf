@@ -24,7 +24,6 @@ terraform {
   backend "s3" {
     bucket = "imosoft-terraform-state"
     region = "eu-west-1"
-    key    = "techworld-terraform-project.tfstate"
-    # workspace_key_prefix = "environments"
+    key    = "techworld-test.tfstate"
   }
 }

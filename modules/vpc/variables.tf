@@ -7,4 +7,3 @@ variable "az-count" {
 }
 variable "environment" {}
 variable "company-ips" {}
-
