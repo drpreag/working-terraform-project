@@ -159,17 +159,17 @@ resource "aws_security_group" "db-sg" {
 
 # make default sg safe
 resource "aws_default_security_group" "default" {
-  vpc_id      = var.vpc.id
+  vpc_id = var.vpc.id
   ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    self        = true
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+    self      = true
   }
   egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    self        = true
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+    self      = true
   }
 }

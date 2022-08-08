@@ -2,18 +2,18 @@
 # EC2 instance
 
 resource "aws_instance" "bastion" {
-  ami                       = local.ami
-  availability_zone         = local.az[0]
-  subnet_id                 = var.subnets[0].id
-  instance_type             = var.instance-type
-  vpc_security_group_ids    = [ var.security-group.id ]
-  key_name                  = var.key-name
-#   iam_instance_profile    = var.instance_profile
+  ami                    = local.ami
+  availability_zone      = local.az[0]
+  subnet_id              = var.subnets[0].id
+  instance_type          = var.instance-type
+  vpc_security_group_ids = [var.security-group.id]
+  key_name               = var.key-name
+  #   iam_instance_profile    = var.instance_profile
   associate_public_ip_address = true
-  disable_api_termination = false
-  ebs_optimized           = false
-  hibernation             = false
-  source_dest_check       = false
+  disable_api_termination     = false
+  ebs_optimized               = false
+  hibernation                 = false
+  source_dest_check           = false
   root_block_device {
     volume_size           = 8
     volume_type           = "gp2"

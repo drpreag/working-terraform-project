@@ -12,24 +12,24 @@
 
 variable "aws-region" {
   default = "us-east-1"
-  type = string
+  type    = string
 }
 variable "bucket-state" { default = "imosoft-terraform-state" }
 variable "vpc-name" { default = "noname" }
 variable "vpc-cidr" {
   description = "VPC CIDR range in form: 10.XXX.0.0/16"
-  default = "10.0.0.0/16"
+  default     = "10.0.0.0/16"
 }
 variable "environment" {
   description = "Environment in which we deploy"
-  default = "development"
+  default     = "development"
 }
 variable "az-count" {
-    # for /19 subnets max 2
-    # for /21 and /24 subnets max 8, also depends on region
-    description = "Number of Availability Zones to use (min 1, max depends of a region)"
-    default     = 1
-    type        = number
+  # for /19 subnets max 2
+  # for /21 and /24 subnets max 8, also depends on region
+  description = "Number of Availability Zones to use (min 1, max depends of a region)"
+  default     = 1
+  type        = number
 }
 variable "key-name" { default = "drpreag_2021" }
 

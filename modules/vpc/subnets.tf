@@ -10,7 +10,7 @@
 resource "aws_subnet" "subnet-dmz" {
   count             = var.az-count
   vpc_id            = aws_vpc.vpc.id
-  cidr_block        = "${local.first-octet}.${local.second-octet}.${(0+count.index)*32}.0/19"
+  cidr_block        = "${local.first-octet}.${local.second-octet}.${(0 + count.index) * 32}.0/19"
   availability_zone = local.az[count.index]
   tags = {
     Name = "${var.vpc-name}-${var.environment}-dmz-${local.az[count.index]}"
@@ -22,7 +22,7 @@ resource "aws_subnet" "subnet-dmz" {
 resource "aws_subnet" "subnet-core" {
   count             = var.az-count
   vpc_id            = aws_vpc.vpc.id
-  cidr_block        = "${local.first-octet}.${local.second-octet}.${(2+count.index)*32}.0/19"
+  cidr_block        = "${local.first-octet}.${local.second-octet}.${(2 + count.index) * 32}.0/19"
   availability_zone = local.az[count.index]
   tags = {
     Name = "${var.vpc-name}-${var.environment}-core-${local.az[count.index]}"
@@ -33,7 +33,7 @@ resource "aws_subnet" "subnet-core" {
 resource "aws_subnet" "subnet-misc" {
   count             = var.az-count
   vpc_id            = aws_vpc.vpc.id
-  cidr_block        = "${local.first-octet}.${local.second-octet}.${(4+count.index)*32}.0/19"
+  cidr_block        = "${local.first-octet}.${local.second-octet}.${(4 + count.index) * 32}.0/19"
   availability_zone = local.az[count.index]
   tags = {
     Name = "${var.vpc-name}-${var.environment}-misc-${local.az[count.index]}"
@@ -45,7 +45,7 @@ resource "aws_subnet" "subnet-misc" {
 resource "aws_subnet" "subnet-db" {
   count             = var.az-count
   vpc_id            = aws_vpc.vpc.id
-  cidr_block        = "${local.first-octet}.${local.second-octet}.${(6+count.index)*32}.0/19"
+  cidr_block        = "${local.first-octet}.${local.second-octet}.${(6 + count.index) * 32}.0/19"
   availability_zone = local.az[count.index]
   tags = {
     Name = "${var.vpc-name}-${var.environment}-db-${local.az[count.index]}"
