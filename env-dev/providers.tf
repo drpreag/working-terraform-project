@@ -15,15 +15,16 @@ provider "aws" {
 }
 
 terraform {
+  required_version = ">=1.2.6"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "4.24.0"
+      version = "4.25.0"
     }
   }
   backend "s3" {
     bucket  = "imosoft-terraform-state"
     region  = "eu-west-1"
-    key     = "techworld-dev.tfstate"
+    key     = "techworld/env-dev.tfstate"
   }
 }
