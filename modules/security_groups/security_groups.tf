@@ -5,7 +5,7 @@
 resource "aws_security_group" "bastion-sg" {
   name        = "${var.vpc-name}-${var.environment}-bastion"
   description = "Bastion security group"
-  vpc_id      = var.vpc.id
+  vpc_id      = var.vpc-id
 
   dynamic "ingress" {
     for_each = var.company-ips
@@ -46,7 +46,7 @@ resource "aws_security_group" "bastion-sg" {
 resource "aws_security_group" "lb-sg" {
   name        = "${var.vpc-name}-${var.environment}-lb"
   description = "LB / HTTPS security group"
-  vpc_id      = var.vpc.id
+  vpc_id      = var.vpc-id
 
   ingress {
     description = "All from lb"
@@ -91,7 +91,7 @@ resource "aws_security_group" "lb-sg" {
 resource "aws_security_group" "core-sg" {
   name        = "${var.vpc-name}-${var.environment}-core"
   description = "Core security group"
-  vpc_id      = var.vpc.id
+  vpc_id      = var.vpc-id
 
   ingress {
     description = "All from core"
@@ -129,7 +129,7 @@ resource "aws_security_group" "core-sg" {
 resource "aws_security_group" "db-sg" {
   name        = "${var.vpc-name}-${var.environment}-db"
   description = "DB security group"
-  vpc_id      = var.vpc.id
+  vpc_id      = var.vpc-id
 
   ingress {
     description = "All from db"
@@ -159,7 +159,7 @@ resource "aws_security_group" "db-sg" {
 
 # make default sg safe
 resource "aws_default_security_group" "default" {
-  vpc_id = var.vpc.id
+  vpc_id = var.vpc-id
   ingress {
     from_port = 0
     to_port   = 0

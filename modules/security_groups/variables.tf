@@ -1,5 +1,5 @@
 
-variable "vpc" {}
+variable "vpc-id" {}
 variable "vpc-name" {}
 variable "vpc-cidr" {}
 variable "environment" {}

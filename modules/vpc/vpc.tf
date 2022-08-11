@@ -8,9 +8,9 @@ resource "aws_vpc" "vpc" {
   tags = {
     Name = "${var.vpc-name}-${var.environment}"
   }
-  provisioner "local-exec" {
-    command = "echo \"VPC: ${self.id}\""
-  }
+  # provisioner "local-exec" {
+  #   command = "echo \"VPC: ${self.id}\""
+  # }
 }
 
 

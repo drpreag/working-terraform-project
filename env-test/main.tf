@@ -10,7 +10,7 @@ module "vpc" {
 
 module "sg" {
   source      = "../modules/security_groups"
-  vpc         = module.vpc.vpc
+  vpc-id      = module.vpc.vpc-id
   vpc-name    = var.vpc-name
   vpc-cidr    = var.vpc-cidr
   environment = var.environment

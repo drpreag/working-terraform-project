@@ -1,7 +1,16 @@
-# output "vpc-id" {
-#   value = module.vpc.id
-# }
+output "vpc-id" {
+  value = module.vpc.vpc-id
+}
 
-# output "bastion-instance" {
-#   value = module.bastion.bastion.public_ip
-# }
+output "subnets-dmz" {
+  value = module.vpc.subnets-dmz
+}
+
+output "subnets-core" {
+  value = module.vpc.subnets-core
+}
+
+output "subnets-db" {
+  value = module.vpc.subnets-db
+}
+

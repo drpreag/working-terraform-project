@@ -34,7 +34,7 @@ resource "aws_instance" "bastion" {
   tags = {
     Name = "${var.vpc-name}-${var.environment}-bastion"
   }
-  provisioner "local-exec" {
-    command = "echo \"Bastion Public IP: ${self.public_ip}\""
-  }
+  # provisioner "local-exec" {
+  #   command = "echo \"Bastion Public IP: ${self.public_ip}\""
+  # }
 }
