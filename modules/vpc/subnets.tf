@@ -8,10 +8,11 @@
 
 # DMZ subnets - public
 resource "aws_subnet" "subnet-dmz" {
-  count             = var.az-count
-  vpc_id            = aws_vpc.vpc.id
-  cidr_block        = "${local.first-octet}.${local.second-octet}.${(0 + count.index) * 32}.0/19"
-  availability_zone = local.az[count.index]
+  count                   = var.az-count
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = "${local.first-octet}.${local.second-octet}.${(0 + count.index) * 32}.0/19"
+  availability_zone       = local.az[count.index]
+  map_public_ip_on_launch = true
   tags = {
     Name = "${var.vpc-name}-${var.environment}-dmz-${local.az[count.index]}"
   }

@@ -17,12 +17,13 @@ module "sg" {
   company-ips = var.company-ips
 }
 
-# module "bastion" {
-#   source         = "./modules/ec2-bastion"
-#   vpc-name       = var.vpc-name
-#   subnets        = module.vpc.subnets-dmz
-#   security-group = module.sg.security-groups[0]
-#   instance-type  = var.bastion-instance-type
-#   key-name       = var.key-name
-#   environment    = var.environment
-# }
+module "bastion" {
+  source   = "../modules/ec2-bastion"
+  eni      = module.vpc.bastion-eni
+  vpc-name = var.vpc-name
+  # subnets        = module.vpc.subnets-dmz
+  security-group = module.sg.security-groups[0]
+  instance-type  = var.bastion-instance-type
+  key-name       = var.key-name
+  environment    = var.environment
+}

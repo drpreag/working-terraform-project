@@ -14,6 +14,10 @@ resource "aws_route_table" "public" {
 
 resource "aws_default_route_table" "local" {
   default_route_table_id = aws_vpc.vpc.default_route_table_id
+  route {
+    cidr_block = "0.0.0.0/0"
+    network_interface_id = aws_network_interface.bastion-eni.id
+  }
   tags = {
     Name = "${var.vpc-name}-${var.environment}-local"
   }
