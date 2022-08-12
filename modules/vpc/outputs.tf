@@ -3,20 +3,17 @@ output "vpc-id" {
 }
 
 output "subnets-dmz" {
-  # value = tolist(aws_subnet.subnet-dmz.id)
   value = tolist([for s in aws_subnet.subnet-dmz : s.id])
 }
 
 output "subnets-core" {
-  # value = tolist(aws_subnet.subnet-core.id)
   value = tolist([for s in aws_subnet.subnet-core : s.id])
 }
 
-output "subnets-db" {
-  # value = tolist(aws_subnet.subnet-db.id)
-  value = tolist([for s in aws_subnet.subnet-db : s.id])
+output "subnets-k8s" {
+  value = tolist([for s in aws_subnet.subnet-k8s : s.id])
 }
 
-# output "azs-per-region" {
-#   value = local.azs-per-region
-# }
+output "subnets-db" {
+  value = tolist([for s in aws_subnet.subnet-db : s.id])
+}

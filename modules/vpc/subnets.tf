@@ -30,13 +30,13 @@ resource "aws_subnet" "subnet-core" {
 }
 
 # MISC subnets
-resource "aws_subnet" "subnet-misc" {
+resource "aws_subnet" "subnet-k8s" {
   count             = var.az-count
   vpc_id            = aws_vpc.vpc.id
   cidr_block        = "${local.first-octet}.${local.second-octet}.${(4 + count.index) * 32}.0/19"
   availability_zone = local.az[count.index]
   tags = {
-    Name = "${var.vpc-name}-${var.environment}-misc-${local.az[count.index]}"
+    Name = "${var.vpc-name}-${var.environment}-k8s-${local.az[count.index]}"
   }
 }
 

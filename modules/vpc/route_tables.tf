@@ -34,9 +34,9 @@ resource "aws_route_table_association" "core" {
   route_table_id = aws_default_route_table.local.id
 }
 
-resource "aws_route_table_association" "misc" {
+resource "aws_route_table_association" "k8s" {
   count          = var.az-count
-  subnet_id      = aws_subnet.subnet-misc[count.index].id
+  subnet_id      = aws_subnet.subnet-k8s[count.index].id
   route_table_id = aws_default_route_table.local.id
 }
 
