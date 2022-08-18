@@ -63,11 +63,11 @@ resource "aws_security_group" "lb-sg" {
     security_groups = [aws_security_group.bastion-sg.id]
   }
   ingress {
-    description = "HTTP from anywhere"
+    description = "HTTP from vpc"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [ var.vpc-cidr ]
   }
   ingress {
     description = "HTTPS from anywhere"
@@ -109,8 +109,8 @@ resource "aws_security_group" "core-sg" {
   }
   ingress {
     description     = "HTTPS from LB"
-    from_port       = 443
-    to_port         = 443
+    from_port       = 80
+    to_port         = 80
     protocol        = "tcp"
     security_groups = [aws_security_group.lb-sg.id]
   }
@@ -122,6 +122,44 @@ resource "aws_security_group" "core-sg" {
   }
   tags = {
     Name = "${var.vpc-name}-${var.environment}-core"
+  }
+}
+
+# Kubernetes sg
+resource "aws_security_group" "k8s-sg" {
+  name        = "${var.vpc-name}-${var.environment}-k8s"
+  description = "Kubernetes worker nodes security group"
+  vpc_id      = var.vpc-id
+
+  ingress {
+    description = "All from k8s"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    self        = true
+  }
+  ingress {
+    description     = "SSH from bastion"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    security_groups = [aws_security_group.bastion-sg.id]
+  }
+  ingress {
+    description     = "HTTP from LB"
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
+    security_groups = [aws_security_group.lb-sg.id]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = [ var.vpc-cidr ]
+  }
+  tags = {
+    Name = "${var.vpc-name}-${var.environment}-k8s-worker-nodes"
   }
 }
 

@@ -19,6 +19,6 @@ output "subnets-db" {
 }
 
 output "bastion-eni" {
-  value = aws_network_interface.bastion-eni.id
+  value = aws_network_interface.bastion-eni
 }
 

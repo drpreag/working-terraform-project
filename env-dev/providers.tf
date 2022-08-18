@@ -7,8 +7,8 @@ provider "aws" {
     tags = {
       Environment = "${var.environment}"
       Owner       = "DrPreAG"
-      Creator     = "techworld"
-      Project     = "techworld-terraform-project"
+      Creator     = "wtf"
+      Project     = "wtf-terraform-project"
       Vpc         = "${var.vpc-name}-${var.environment}"
     }
   }
@@ -23,8 +23,8 @@ terraform {
     }
   }
   backend "s3" {
-    bucket  = "imosoft-terraform-state"
-    region  = "eu-west-1"
-    key     = "techworld/env-dev.tfstate"
+    bucket = "imosoft-terraform-state"
+    region = "eu-west-1"
+    key    = "wtf/env-dev.tfstate"
   }
 }

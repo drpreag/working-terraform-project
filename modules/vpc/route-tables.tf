@@ -12,14 +12,14 @@ resource "aws_route_table" "public" {
   }
 }
 
-resource "aws_default_route_table" "local" {
+resource "aws_default_route_table" "private" {
   default_route_table_id = aws_vpc.vpc.default_route_table_id
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block           = "0.0.0.0/0"
     network_interface_id = aws_network_interface.bastion-eni.id
   }
   tags = {
-    Name = "${var.vpc-name}-${var.environment}-local"
+    Name = "${var.vpc-name}-${var.environment}-private"
   }
 }
 
@@ -35,17 +35,17 @@ resource "aws_route_table_association" "dmz" {
 resource "aws_route_table_association" "core" {
   count          = var.az-count
   subnet_id      = aws_subnet.subnet-core[count.index].id
-  route_table_id = aws_default_route_table.local.id
+  route_table_id = aws_default_route_table.private.id
 }
 
 resource "aws_route_table_association" "k8s" {
   count          = var.az-count
   subnet_id      = aws_subnet.subnet-k8s[count.index].id
-  route_table_id = aws_default_route_table.local.id
+  route_table_id = aws_default_route_table.private.id
 }
 
 resource "aws_route_table_association" "db" {
   count          = var.az-count
   subnet_id      = aws_subnet.subnet-db[count.index].id
-  route_table_id = aws_default_route_table.local.id
+  route_table_id = aws_default_route_table.private.id
 }

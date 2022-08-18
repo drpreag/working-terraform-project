@@ -18,3 +18,8 @@ output "subnets-db" {
   value = module.vpc.subnets-db
 }
 
+output "bastion-ip" {
+  value = module.bastion.bastion-public-ip
+}
+
+
