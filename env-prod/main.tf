@@ -10,7 +10,7 @@ module "vpc" {
 
 module "sg" {
   source      = "git::https://github.com/drpreag/terraform-modules.git//security_groups"
-  vpc         = module.vpc.vpc
+  vpc-id      = module.vpc.vpc-id
   vpc-name    = var.vpc-name
   vpc-cidr    = var.vpc-cidr
   environment = var.environment
