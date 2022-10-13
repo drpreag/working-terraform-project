@@ -23,7 +23,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "imosoft-terraform-state"
+    bucket = "imosoft-terraform-state-bucket"
     region = "eu-west-1"
     key    = "wtf/env-dev.tfstate"
   }

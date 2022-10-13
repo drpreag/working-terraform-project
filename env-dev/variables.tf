@@ -11,10 +11,10 @@
 #
 
 variable "aws-region" {
-  default = "us-east-1"
+  default = "eu-west-1"
   type    = string
 }
-variable "bucket-state" { default = "imosoft-terraform-state" }
+variable "bucket-state" { default = "bucket-for-state" }
 variable "vpc-name" { default = "noname" }
 variable "vpc-cidr" {
   description = "VPC CIDR range in form: 10.XXX.0.0/16"
@@ -42,7 +42,6 @@ variable "rds-instance-type" { default = "db.t3.micro" }
 variable "company-ips" {
   type = map(any)
   default = {
-    "Predrag home 1" = "46.235.98.0/24"
-    "Predrag home 2" = "46.235.99.0/24"
+    "Predrag home" = "178.220.221.0/24"
   }
 }

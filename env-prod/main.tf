@@ -1,6 +1,6 @@
 
 module "vpc" {
-  source      = "./modules/vpc"
+  source      = "git::https://github.com/drpreag/terraform-modules.git//vpc"
   vpc-name    = var.vpc-name
   vpc-cidr    = var.vpc-cidr
   az-count    = var.az-count
@@ -9,7 +9,7 @@ module "vpc" {
 }
 
 module "sg" {
-  source      = "./modules/security_groups"
+  source      = "git::https://github.com/drpreag/terraform-modules.git//security_groups"
   vpc         = module.vpc.vpc
   vpc-name    = var.vpc-name
   vpc-cidr    = var.vpc-cidr
