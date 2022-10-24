@@ -71,7 +71,7 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         role-session-name: GitHubActions
-    - run: aws sts get-caller-identity
+      run: aws sts get-caller-identity
 
     - name: Checkout
       uses: actions/checkout@v3
