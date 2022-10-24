@@ -20,7 +20,7 @@ pipeline {
     stages {
         stage('Executing terraform') {
             steps {
-                withAWS(credentials: ${env.AWS_CREDENTIALS}, region: ${env.AWS_REGION}) {
+                withAWS(credentials: "${env.AWS_CREDENTIALS}", region: "${env.AWS_REGION}") {
                     script {
                         sh """
     #!/bin/bash
