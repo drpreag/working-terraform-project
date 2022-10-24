@@ -20,21 +20,23 @@ pipeline {
     stages {
         stage('Executing terraform') {
             steps {
-            withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: "${env.AWS_CREDENTIALS}", accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                    script {
-                        sh """
-    #!/bin/bash
-    echo "Terraform init"
-    terraform init
-    echo "Terraform validate"
-    terraform validate
-    echo "Terraform fmt"
-    terraform fmt -recursive
-    echo "Terraform plan"
-    terraform plan -out tf1
-    echo "Terraform apply"
-    terraform apply tf1
-                        """
+                withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: "${env.AWS_CREDENTIALS}", accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                    withAWS(profile:'default') {
+                        script {
+                            sh """
+        #!/bin/bash
+        echo "Terraform init"
+        terraform init
+        echo "Terraform validate"
+        terraform validate
+        echo "Terraform fmt"
+        terraform fmt -recursive
+        echo "Terraform plan"
+        terraform plan -out tf1
+        echo "Terraform apply"
+        terraform apply tf1
+                            """
+                        }
                     }
                 }
             }
