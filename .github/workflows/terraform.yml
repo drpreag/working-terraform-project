@@ -81,6 +81,7 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         role-session-name: GitHubActions
         role-skip-session-tagging: true
+        role-duration-seconds: 1200
 
     - run: aws sts get-caller-identity
 
