@@ -22,9 +22,10 @@ terraform {
       version = "4.25.0"
     }
   }
-  backend "s3" {
-    bucket = "imosoft-terraform-state-bucket"
-    region = "eu-west-1"
-    key    = "wtf/env-test.tfstate"
+  cloud {
+    organization = "imo-soft"
+    workspaces {
+      name = "wtf"
+    }
   }
 }
