@@ -28,19 +28,19 @@ module "sg" {
 module "route53" {
   source      = "git::https://github.com/drpreag/terraform-modules.git//route53?ref=master"
   vpc-id      = module.vpc.vpc.id
-  zone-name   = "it-outsource.me"
+  zone-name   = "wtf.com"
   environment = var.environment
 }
 
-module "kms" {
-  source      = "git::https://github.com/drpreag/terraform-modules.git//kms?ref=master"
-  vpc-id      = module.vpc.vpc.id
-  environment = var.environment
-}
+# module "kms" {
+#   source      = "git::https://github.com/drpreag/terraform-modules.git//kms?ref=master"
+#   vpc-id      = module.vpc.vpc.id
+#   environment = var.environment
+# }
 
 module "s3" {
   source          = "git::https://github.com/drpreag/terraform-modules.git//s3?ref=master"
   vpc-id          = module.vpc.vpc.id
-  allowed-origins = "https://it-outsource.me"
-  bucket-name     = "it-outsource-test-bucket"
+  allowed-origins = "https://wtf.com"
+  bucket-name     = "wtf-com-test-bucket"
 }

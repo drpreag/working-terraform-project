@@ -34,6 +34,6 @@ output "route53-public-zone" {
   value = module.route53.route53-public-zone.name
 }
 
-output "kms-key-arn" {
-  value = module.kms.kms-key.arn
-}
+# output "kms-key-arn" {
+#   value = module.kms.kms-key.arn
+# }
