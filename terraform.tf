@@ -1,8 +1,7 @@
 # basic terraform project settings
 
 provider "aws" {
-  region  = var.aws-region
-  profile = "default"
+  region = var.aws-region
   default_tags {
     tags = {
       Environment = "${var.environment}"
