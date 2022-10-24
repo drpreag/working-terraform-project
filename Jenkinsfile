@@ -29,9 +29,9 @@ pipeline {
     echo "Terraform validate"
     terraform validate
     echo "Terraform fmt"
-    terraform fmt -recursive -check
+    terraform fmt -recursive
     echo "Terraform plan"
-    terraform plant -out tf1
+    terraform plan -out tf1
     echo "Terraform apply"
     terraform apply tf1
                         """
