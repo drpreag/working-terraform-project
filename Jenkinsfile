@@ -14,27 +14,28 @@ pipeline {
     environment {
         GITHUB_CREDENTIALS = "github_pat"
         AWS_CREDENTIALS = "terraform-aws-user"
-        ECR = "016682580984.dkr.ecr.eu-west-1.amazonaws.com"
-        ECR_REGION = "eu-central-1"
+        AWS_REGION = "eu-central-1"
     }
 
     stages {
         stage('Executing terraform') {
             steps {
-                script {
-                    sh """
-#!/bin/bash
-echo "Terraform init"
-terraform init
-echo "Terraform validate"
-terraform validate
-echo "Terraform fmt"
-terraform fmt -recursive -check
-echo "Terraform plan"
-terraform plant -out tf1
-echo "Terraform apply"
-terraform apply tf1
-                    """
+                withAWS(credentials: ${env.AWS_CREDENTIALS}, region: ${env.AWS_REGION}) {
+                    script {
+                        sh """
+    #!/bin/bash
+    echo "Terraform init"
+    terraform init
+    echo "Terraform validate"
+    terraform validate
+    echo "Terraform fmt"
+    terraform fmt -recursive -check
+    echo "Terraform plan"
+    terraform plant -out tf1
+    echo "Terraform apply"
+    terraform apply tf1
+                        """
+                    }
                 }
             }
         }
