@@ -42,7 +42,6 @@ variable "rds-instance-type" { default = "db.t3.micro" }
 variable "company-ips" {
   type = map(any)
   default = {
-    "Predrag home 1" = "46.235.98.0/24"
-    "Predrag home 2" = "46.235.99.0/24"
+    "Predrag home 1" = "79.101.168.231/32"
   }
 }
