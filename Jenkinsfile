@@ -1,6 +1,3 @@
-def DOCKER_TAG
-def TAGGED_BUILD=false
-
 pipeline {
     agent any
 
